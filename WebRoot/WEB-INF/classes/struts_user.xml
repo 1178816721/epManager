@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	
+    <package name="user" namespace="/" extends="struts-default,json-default">
+       <!-- <interceptors>
+			声明拦截器
+			<interceptor name="checkPrivilege"
+				class="com.osdoctor.util.init.CheckPowerAdminInterceptor"></interceptor>
+
+			声明拦截器栈
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="checkPrivilege"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		修改默认使用的拦截器栈
+		<default-interceptor-ref name="myStack"></default-interceptor-ref>
+		全局转向
+		<global-results>
+			<result name="formError">/error/inputError.jsp</result>
+			<result name="nouserpowers">/error/500.jsp</result>
+			<result name="userlogin">/WEB-INF/page/login.jsp</result>
+		
+		<result name="input">/WEB-INF/page/error.jsp</result>
+		</global-results>-->
+		
+		
+		
+    </package>	
+</struts>

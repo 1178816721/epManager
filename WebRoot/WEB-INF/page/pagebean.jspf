@@ -1,0 +1,61 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/layui.css"  media="all">
+<style type="text/css">
+.pagin{position:relative;margin-top:10px;padding:0 12px;}
+.pagin .blue{color:#056dae;font-style:normal;}
+.pagin .paginList{position:absolute;right:12px;top:0;}
+.pagin .paginList .paginItem{float:left;}
+.pagin .paginList .paginItem a{float:left;width:31px;height:28px;border:1px solid #DDD; text-align:center;line-height:30px;border-left:none;color:#3399d5;}
+.pagin .paginList .paginItem:first-child a{border-left:1px solid #DDD;}
+.pagin .paginList .paginItem:first-child a{border-bottom-left-radius:5px;border-top-left-radius:5px;}
+.pagin .paginList .paginItem:last-child a{border-bottom-right-radius:5px;border-top-right-radius:5px;}
+.pagin .paginList .paginItem.current,.pagin .paginList .paginItem.current a{background:#f5f5f5; cursor:default;color:#737373;}
+.pagin .paginList .paginItem:hover{background:#f5f5f5;}
+.pagin .paginList .paginItem.more,.pagin .paginList .paginItem.more a:hover{ cursor:default;}
+.pagin .paginList .paginItem.more:hover{background:#FFF;}
+.pagin .paginList .paginItem.more a{color:#737373;}
+.pagepre{background:url(../images/pre.gif) no-repeat center center; width:31px; height:28px;}
+.pagenxt{background:url(../images/next.gif) no-repeat center center; width:31px; height:28px;}
+</style>
+<div class="pagin">
+				<div class="message">共<i class="blue">${recordCount}</i>条记录，当前显示第&nbsp;<i class="blue">${currentPage}/${pageCount }&nbsp;</i>页</div>
+				<ul class="paginList">
+				<!-- 首页 -->
+					<li class="paginItem"><a href="javascript: gotoPage(1)"><span class="pagepre"></span></a></li>
+					<s:iterator begin="%{beginPageIndex}" end="%{endPageIndex}" var="num">
+						<!-- 当前页 -->
+						<s:if test="#num == currentPage">
+						<li class="paginItem current"><a href="javascript:;">${num}</a></li>
+						</s:if>
+						<!-- 非当前页 -->
+						<s:else>
+						<li class="paginItem"><a style="cursor: hand;" onClick="gotoPage(${num});">${num}</a></li>
+						</s:else>
+					</s:iterator>
+					<!-- <li class="paginItem"><a href="javascript:;">1</a></li>
+					<li class="paginItem current"><a href="javascript:;">2</a></li>
+					<li class="paginItem"><a href="javascript:;">3</a></li>
+					<li class="paginItem"><a href="javascript:;">4</a></li>
+					<li class="paginItem"><a href="javascript:;">5</a></li>
+					<li class="paginItem more"><a href="javascript:;">...</a></li>
+					<li class="paginItem"><a href="javascript:;">10</a></li> -->
+					<li class="paginItem"><a href="javascript: gotoPage(${pageCount});"><span class="pagenxt"></span></a></li>
+				</ul>
+				
+			</div>
+<script src="${pageContext.request.contextPath}/js/layui.js" charset="utf-8"></script>
+<script type="text/javascript">
+/* laypage.render({
+    elem: '"pagin"'
+    ,count: ${recordCount}
+    ,layout: ['count', 'prev', 'page', 'next', 'skip']
+    ,jump: function(obj){
+      console.log(obj)
+    }
+  }); */
+	function gotoPage(pageNum){	
+			$(document.forms[0]).append( "<input type='hidden' name='pageNum' value='" + pageNum + "'/>" );
+		document.forms[0].submit();
+	}
+</script>

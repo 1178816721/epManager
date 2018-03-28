@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<include file="struts_user.xml"></include>
+	<!-- 配置为开发模式 -->
+	<constant name="struts.devMode" value="true" />
+	<!-- 配置扩展名为action -->
+	<constant name="struts.action.extension" value="action" />
+	<constant name="struts.locale" value="zh_CN" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+	<constant name="struts.multipart.maxSize" value="1048576000" />
+	<constant name="struts.custom.i18n.resources" value="globalMessages" />
+
+	<package name="main" namespace="/" extends="struts-default,json-default">
+		<action name="index_*" class="com.epmanager.action.IndexAction"
+			method="{1}">
+			<result name="main">/WEB-INF/page/admin.jsp</result> 
+			<result name="top">/WEB-INF/page/admin_top.jsp</result>
+			<result name="left">/WEB-INF/page/admin_left.jsp</result>
+			<result name="index">/WEB-INF/page/admin_index.jsp</result>
+			<result name="head">/WEB-INF/page/admin_head.jsp</result>
+			<result name="login">/WEB-INF/page/login.jsp</result>
+		</action>
+		
+		<action name="person_*" class="com.epmanager.action.PersonAction" method="{1}">
+			<result name="list">/WEB-INF/page/personList.jsp</result>
+			<result name="save" type="redirect">/person_list.action</result>
+			<result name="add">/WEB-INF/page/personInput.jsp</result>
+			<result name="edit">/WEB-INF/page/personUpdate.jsp</result>
+			<result name="update" type="redirect">/person_list.action</result>
+			<result name="delete" type="redirect">/person_list.action</result>
+		</action>
+		<action name="wage_*" class="com.epmanager.action.WageAction" method = "{1}">
+			<result name="addsave">/WEB-INF/page/wageInput.jsp </result>
+			<result name="addwage" type="redirect">/wage_list.action</result>
+			<result name="list">/WEB-INF/page/wageList.jsp</result>
+		</action>
+		
+		
+	</package>
+</struts>
