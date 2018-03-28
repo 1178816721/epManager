@@ -16,6 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</frameset>
 		<frameset cols="160px,*">
 			<frame src="${pageContext.request.contextPath}/index_left.action"/>
+			<frame src="${pageContext.request.contextPath}/index_login.action" name="login">
 			<frame src="${pageContext.request.contextPath}/index_index.action" name="main">
 		</frameset>
 	</frameset>
