@@ -16,8 +16,27 @@
 	<constant name="struts.custom.i18n.resources" value="globalMessages" />
 
 	<package name="main" namespace="/" extends="struts-default,json-default">
+	<!--全局拦截器 （ 登录  退出登录不拦截）-->
+	<interceptors>
+	<interceptor name="restPageInterceptor" class="com.epmanager.interceptor.RestPageInterceptor">
+	
+	</interceptor>
+	<!--拦截器栈  -->
+	<interceptor-stack name="interceptorStack">
+	<interceptor-ref name="restPageInterceptor"/>
+	<interceptor-ref name="defaultStack"/>
+	</interceptor-stack>
+	</interceptors>
+	<!--全局结果处理  -->
+	<global-results>
+	<result name="login" type="redirect">/index_login.action</result>
+	<result name="errorMsg">/WEB-INF/page/errorMsg.jsp</result>
+	</global-results>
+	
 		<action name="index_*" class="com.epmanager.action.IndexAction"
 			method="{1}">
+		    <interceptor-ref name="interceptorStack">
+			</interceptor-ref> 
 			<result name="login">/WEB-INF/page/login.jsp</result>
 			<result name="main">/WEB-INF/page/admin.jsp</result> 
 			<result name="top">/WEB-INF/page/admin_top.jsp</result>
@@ -29,6 +48,7 @@
 		</action>
 		
 		<action name="person_*" class="com.epmanager.action.PersonAction" method="{1}">
+		<interceptor-ref name="interceptorStack"/>
 			<result name="list">/WEB-INF/page/personList.jsp</result>
 			<result name="save" type="redirect">/person_list.action</result>
 			<result name="add">/WEB-INF/page/personInput.jsp</result>
@@ -38,6 +58,7 @@
 		</action>
 		
 		<action name="wage_*" class="com.epmanager.action.WageAction" method = "{1}">
+		<interceptor-ref name="interceptorStack"/>
 			<result name="addsave">/WEB-INF/page/wageInput.jsp </result>
 			<result name="addwage" type="redirect">/wage_list.action</result>
 			<result name="list">/WEB-INF/page/wageList.jsp</result>

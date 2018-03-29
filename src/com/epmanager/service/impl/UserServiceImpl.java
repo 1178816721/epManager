@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.epmanager.dao.UserDao;
-import com.epmanager.exception.util.ObjectNullException;
+import com.epmanager.exception.util.RestPageException;
 import com.epmanager.orm.User;
 import com.epmanager.service.UserService;
 import com.epmanager.util.BaseService;
@@ -26,7 +26,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			user = userDao.login(usen, psd);	
 		}
 		if (user == null) {
-			throw new ObjectNullException("用户名或密码错误");
+			throw new RestPageException("用户名或密码错误");
 		}
 		return user;
 
