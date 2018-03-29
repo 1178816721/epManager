@@ -13,8 +13,8 @@ import com.epmanager.util.HqlHelper;
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao{
 
 	public User login(String usen, String psd) {
-		HqlHelper hqlHelper = new HqlHelper(User.class, "u").addWhereCondition("u.user.usen=? and u.user.psd",usen,psd);
-//		List<User> users=findByHql("FROM User WHERE usen=? and psd=?",usen,psd);
+
+		HqlHelper hqlHelper = new HqlHelper(User.class, "u").addWhereCondition("u.usen=? and u.psd=?",usen,psd);
 		List<User> users =findObjects(hqlHelper);
 		if(users.size()>0){
 			return users.get(0);

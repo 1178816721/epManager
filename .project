@@ -16,17 +16,7 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>com.genuitec.eclipse.j2eedt.core.WebClasspathBuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>com.genuitec.eclipse.j2eedt.core.J2EEProjectValidator</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
