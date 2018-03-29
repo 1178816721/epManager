@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
 	<classpathentry kind="src" path="config"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/CKFinder-2.4.3.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/CKFinderPlugin-FileEditor-2.4.3.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/CKFinderPlugin-ImageResize-2.4.3.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/CKFinderPlugin-Watermark-2.4.3.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ant.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/antlr-2.7.6.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/aspectjrt.jar"/>
@@ -9,10 +15,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/c3p0-0.9.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/cglib-nodep-2.1_3.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ckeditor-java-core-3.5.3.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/CKFinder-2.4.3.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/CKFinderPlugin-FileEditor-2.4.3.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/CKFinderPlugin-ImageResize-2.4.3.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/CKFinderPlugin-Watermark-2.4.3.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/com.springsource.org.aopalliance-1.0.0.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-beanutils-1.8.0.jar"/>
@@ -66,17 +68,5 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2-json-plugin-2.3.20.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2-spring-plugin-2.3.20.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xwork-core-2.3.20.jar"/>
-	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.generic_5.0">
-		<attributes>
-			<attribute name="owner.project.facets" value="jst.web"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.jstl_1.2">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-			<attribute name="owner.project.facets" value="jst.web.jstl"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/com.sun.java.jdk7.win32.x86_64_1.7.0.u45"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

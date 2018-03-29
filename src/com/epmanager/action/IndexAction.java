@@ -1,15 +1,10 @@
 package com.epmanager.action;
 
-import org.apache.struts2.ServletActionContext;
-
-import com.epmanager.exception.util.RestPageException;
+import com.epmanager.exception.util.ObjectNullException;
 import com.epmanager.orm.User;
 import com.epmanager.service.impl.UserServiceImpl;
-import com.opensymphony.xwork2.ActionContext;
 
 public class IndexAction extends BaseAction<User>{
-	private String usen;
-	private String psd;
 	public String main(){
 		
 		return "main";
@@ -29,20 +24,26 @@ public class IndexAction extends BaseAction<User>{
 	public String login(){
 		return "login";
 	}
-	public String tologin(){
-		/*usen= ServletActionContext.getRequest().getParameter("usen");
-		psd= ServletActionContext.getRequest().getParameter("usen");*/
-		User user=  userService.login(model.getUsen(), model.getPsd());
-		ServletActionContext.getRequest().getSession().setAttribute("user", user);
+	public String tologin(String uesn,String psd){
+		User user=  userService.login(uesn, psd);
+		
+		if(user==null){
+			throw new ObjectNullException("账号或密码错误！");
+		}
+		
 		return "tologin";
 	}
-	public String outLogin(){
-		ServletActionContext.getRequest().getSession().removeAttribute("user");
-		return "login";
+	
+	
+	
+	
+	private String getpsd() {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-	
-	
-	
-	
+	private String getusen() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

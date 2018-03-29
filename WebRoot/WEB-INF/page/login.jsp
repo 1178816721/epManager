@@ -26,8 +26,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    <form action="${pageContext.request.contextPath}/index_tologin.action" method="post">
 	   			<div class="btnLogin" align="center">
 	    	
-	        	<input type="text" name="usen"/><br/>
-	            <br/><input type="password" name="psd"/>
+	        	<input type="text" name="psd"/><br/>
+	            <br/><input type="psd" name="psd"/>
 	        
 	   		   </div>
 	   		<p align="center"> 

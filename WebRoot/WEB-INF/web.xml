@@ -55,7 +55,18 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
-
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>person_list</servlet-name>
+    <servlet-class>com.epmanager.action.person_list</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UserAction</servlet-name>
+    <servlet-class>com.epmanager.action.UserAction</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>ConnectorServlet</servlet-name>
     <url-pattern>

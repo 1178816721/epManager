@@ -1,10 +1,10 @@
 package com.epmanager.exception.util;
 
-public class RestPageException extends RuntimeException {
+public class ObjectNullException extends RuntimeException {
 
 		private static final long serialVersionUID = 1L;
 		
-		public RestPageException(String msg){
+		public ObjectNullException(String msg){
 			super(msg);
 		}
 
