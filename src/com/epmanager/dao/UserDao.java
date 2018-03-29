@@ -8,4 +8,6 @@ import com.epmanager.util.BaseDao;
 
 public interface UserDao extends BaseDao<User>{
 
+	User login(String usen, String psd);
+
 }

@@ -22,17 +22,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<body>
 		<div class="Manage-line line">
 			<div class="tab table-bordered">
-			<h1 align="center" style="color: blue">企业人事管理系统</h1>
-    <form action="" method="post">
-   			<div class="btnLogin" align="center">
-    	
-        	<input type="text" name="psd"/><br/>
-            <br/><input type="psd" name="psd"/>
-        
-    </div>
-   		<p align="center"> 
-   		<input type="submit" value="登录" >
-   		</p>
+				<h1 align="center" style="color: blue">企业人事管理系统</h1>
+	    <form action="${pageContext.request.contextPath}/index_tologin.action" method="post">
+	   			<div class="btnLogin" align="center">
+	    	
+	        	<input type="text" name="psd"/><br/>
+	            <br/><input type="psd" name="psd"/>
+	        
+	   		   </div>
+	   		<p align="center"> 
+	   		<input type="submit" value="登录" >
+	   		</p>
 		</form>		
 			</div>
 		</div>

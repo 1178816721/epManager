@@ -17,7 +17,7 @@ public class WageServiceImpl extends BaseServiceImpl<Wage> implements WageServic
 		setBaseDao(wageDao);
 		this.wageDao = wageDao;
 	}
-	@Override
+
 	public Wage getWageByUserId(Integer userId) {
 		return wageDao.getWageByUserId(userId);
 		

@@ -13,12 +13,13 @@ import com.epmanager.util.HqlHelper;
 @Repository
 public class WageDaoImpl extends BaseDaoImpl<Wage> implements WageDao{
 
-	@Override
 	public Wage getWageByUserId(Integer userId) {
 		HqlHelper hqlHelper = new HqlHelper(Wage.class, "w").addWhereCondition("w.user.id=?",userId);
 		List<Wage> wages =findObjects(hqlHelper);
 		return wages.size()==0?null:wages.get(0);
 	}
+
+	
 
 
 

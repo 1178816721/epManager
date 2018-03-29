@@ -2,6 +2,8 @@ package com.epmanager.util;
 
 import java.util.List;
 
+import com.epmanager.orm.Wage;
+
 
 /**
  * 数据访问接口
@@ -62,4 +64,6 @@ public interface BaseDao<T> {
 	 * 
 	 */
 	PageBean getPageBean(int pageNum, int Pagesize, HqlHelper hqlHelper);
+
+	
 }
