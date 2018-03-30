@@ -3,10 +3,19 @@ package com.epmanager.util;
 import java.lang.reflect.ParameterizedType;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
+
 import org.hibernate.*;
+import org.hibernate.transform.ResultTransformer;
+import org.hibernate.transform.Transformers;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
+
+
+
+
 
 
 
@@ -119,4 +128,35 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 		}
 		return query.list();
 	}
+
+	public List<T> findObjectsBysql(String sql, Class<T> classz) {
+		return getSession().createSQLQuery(sql).addEntity(classz).list();
+	}
+
+	public T findObjectBysql(String sql, Class<T> classz) {
+		SQLQuery sqlQuery=getSession().createSQLQuery(sql).addEntity(classz);
+		return (T) (sqlQuery.list().size()>0?sqlQuery.list().get(0):null);
+	}
+
+	public List<Map<String, Object>> findObjectsBysql(String sql,
+			 Object... para) {
+		SQLQuery sqlQuery=getSession().createSQLQuery(sql);
+		for(int i=0;i<para.length;i++){
+			sqlQuery.setString(i, para.toString());
+		}
+		sqlQuery.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+		return sqlQuery.list();
+	}
+
+	public Map<String, Object> findObjectBysql(String sql, 
+			Object... para) {
+		SQLQuery sqlQuery=getSession().createSQLQuery(sql);
+		for(int i=0;i<para.length;i++){
+			sqlQuery.setString(i, para.toString());
+		}
+		sqlQuery.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+		return (Map<String, Object>) (sqlQuery.list().size()>0?sqlQuery.list().get(0):null);
+	}
+	
+	
 }

@@ -21,12 +21,8 @@ public class AttendanceDaoImpl extends BaseDaoImpl<Attendance> implements
 						"select * from ATTENDANCE where DATE_FORMAT(CREATEDATE,'%yyyy%MM%dd')=DATE_FORMAT(NOW(),'%yyyy%MM%dd')")
 				.addEntity(Attendance.class);
 		List<Attendance> attendances = query.list();
-		if (attendances.size() > 0) {
-			return false;
-		} else {
-			return true;
-		}
-
+		
+        return attendances.size()>0?false:true;
 	}
 
 	public String historyQd(int month,int userId) {
