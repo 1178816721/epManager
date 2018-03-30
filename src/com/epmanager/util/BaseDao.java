@@ -99,5 +99,5 @@ public interface BaseDao<T> {
 	 */
 	PageBean getPageBean(int pageNum, int Pagesize, HqlHelper hqlHelper);
 
-	
+	PageBean getPageBeanBySql(String sql, int pageNum, int Pagesize,Object... para);
 }

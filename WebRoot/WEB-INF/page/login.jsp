@@ -4,39 +4,55 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<!DOCTYPE html>
-<html>
-
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/pintuer.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/web.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/js/font-awesome-4.5.0/css/font-awesome.min.css" />
-		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/js/pintuer.js"></script>
-		<script src="${pageContext.request.contextPath}/js/Select-More.js" type="text/javascript" charset="utf-8"></script>
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>登录</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/default.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styles.css">
+</head>
+<body>
+	<div class="htmleaf-container">
 		
-	</head>
-
-	<body>
-		<div class="Manage-line line">
-			<div class="tab table-bordered">
-				<h1 align="center" style="color: blue">企业人事管理系统</h1>
-	    <form action="${pageContext.request.contextPath}/index_tologin.action" method="post">
-	   			<div class="btnLogin" align="center">
-	    	
-	        	<input type="text" name="usen"/><br/>
-	            <br/><input type="password" name="psd"/>
-	        
-	   		   </div>
-	   		<p align="center"> 
-	   		<input type="submit" value="登录" >
-	   		</p>
-		</form>		
+		<div class="wrapper">
+			<div class="container">
+				<h1>Welcome</h1>
+				
+				  <form action="${pageContext.request.contextPath}/index_tologin.action" method="post">
+					<input type="text" placeholder="Username" name="usen">
+					<input type="password" placeholder="Password" name="psd">
+					<button type="submit" id="login-button">Login</button>
+				</form>
 			</div>
+			
+			<ul class="bg-bubbles">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
 		</div>
 		
-	</body>
-
+	</div>
+	
+	<script src="${pageContext.request.contextPath}/js/jquery-2.1.1.min.js"></script>
+	<script>
+	$('#login-button').click(function (event) {
+	    event.preventDefault();
+	    $('form').fadeOut(500);
+	    $('.wrapper').addClass('form-success');
+	    document.forms[0].submit();
+	});
+	</script>
+</body>
 </html>

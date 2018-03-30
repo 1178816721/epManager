@@ -22,6 +22,9 @@ public interface BaseService<T> {
 	//分页条件查询实体列表--查询助手queryHelper
 	public 	PageBean getPageBean(HqlHelper hqlHelper,int pageNum, int Pagesize);
 	
+	
+	public 	PageBean getPageBeanBySql(String sql,int pageNum, int Pagesize,Object ...para);
+	
 	/**
 	 * 根据sql查询  查询的值 反射为 对象集合
 	 * @param sql

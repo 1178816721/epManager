@@ -49,25 +49,31 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	}
 
 	public List<T> findObjectsBysql(String sql, Class<T> classz) {
-		// TODO Auto-generated method stub
+		
 		return baseDao.findObjectsBysql(sql, classz);
 	}
 
 	public T findObjectBysql(String sql, Class<T> classz) {
-		// TODO Auto-generated method stub
+		
 		 return baseDao.findObjectBysql(sql, classz);
 	}
 
 	public List<Map<String, Object>> findObjectsBysql(String sql,
 			Object... para) {
-		// TODO Auto-generated method stub
+		
 		return baseDao.findObjectsBysql(sql, para);
 	}
 
 	public Map<String, Object> findObjectBysql(String sql, Object... para) {
-		// TODO Auto-generated method stub
+	
 		return baseDao.findObjectBysql(sql, para);
 	}
+
+	public PageBean getPageBeanBySql(String sql, int pageNum, int Pagesize,Object ...para) {
+		
+		return baseDao.getPageBeanBySql(sql, pageNum, Pagesize, para);
+	}
+
 
 
 }

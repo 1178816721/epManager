@@ -4,6 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -23,63 +24,66 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="Manage-line line">
 			<div class="tab table-bordered">
 				<div class="tab-head">
-					<strong><i class="fa fa-users"></i>员工管理</strong> <span class="tab-more"><a href="javascript:history.go(-1)">返回上一页</a></span>
+					<strong><i class="fa fa-users"></i>签到管理</strong> <span class="tab-more"><a href="javascript:history.go(-1)">返回上一页</a></span>
 					<ul class="tab-nav">
-						<li class="active"><a href="#tab-start">员工成员</a></li>
+						<li class="active"><a href="#tab-start">签到详情</a></li>
 					</ul>
 				</div>
 				<div class="tab-body">
 					<div class="tab-panel active" id="tab-start">
 						<div class="line">
-							<form action="${pageContext.request.contextPath}/person_list.action" method="post">
+							<form action="${pageContext.request.contextPath}/qd_list.action" method="post">
+								
 								<div class="x6">
 									<strong>员工账号：</strong>
 									<input type="text" value="${usen}" name="usen" placeholder="请输入员工账号" />
 									<input type="submit" id="" name="" class="much-search" value="搜索" />
 								</div>
 							</form>
-							<div class="x6">
-								<a href="${pageContext.request.contextPath}/person_add.action" class="Member-modify dialogs">添加员工</a>
+							<!--<div class="x6">
+								<a href="${pageContext.request.contextPath}/wage_list.action" class="Member-modify dialogs">签到管理</a>
 							</div>
+							-->
 						</div>
 						<div class="table-responsive-y">
 							<table class="table table-hover">
 								<thead>
 									<tr class="current">
+										
 										<th>
-											员工账号
+											员工账号	
 										</th>
 										<th>
-											姓名
+											员工姓名	
 										</th>
 										<th>
-											入职时间
+											本月签到情况
 										</th>
+										
 										<th>
 											操作
 										</th>
 									</tr>
 								</thead>
-								<tbody>
-								<s:iterator value="recordList" status="l">
+								<tbody> 
+							<c:forEach items="${recordList}" var="data">  
+							
 									<tr>
 										<td>
-											${user.usen}
+											${data.USEN}  
 										</td>
 										<td>
-											${name}
+										${data.NAME} 
 										</td>
 										<td>
-											${inJobTime}
+										${data.qdCount}/${data.monthDay}
 										</td>
-										<td>
-											<button class="modify-button" onclick="javascript:window.location.href='${pageContext.request.contextPath}/person_edit.action?id=${id}'">修改</button>
-										<button class="modify-button" onclick="javascript:window.location.href='${pageContext.request.contextPath}/person_delete.action?id=${id}'">删除</button>
 										
-										<button class="modify-button" onclick="javascript:window.location.href='${pageContext.request.contextPath}/wage_addsave.action?userId=${user.id}'">添加薪资</button>
+										<td>
+											<button class="modify-button" onclick="javascript:window.location.href='${pageContext.request.contextPath}/qd_details.action?id=${data.id}'">查看详情</button>										
 										</td>
 									</tr>
-									</s:iterator>
+									 </c:forEach>  
 								</tbody>
 								
 							</table>

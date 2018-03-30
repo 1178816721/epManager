@@ -106,13 +106,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div class="x9">
 
 							</div>
-							<!-- 
 							<div class="x3">
-							<form action="${pageContext.request.contextPath}/person_list.action" method="post">
-    						<--%@include file="pagebean.jspf" %>
-    						</form>
+							
+    						<%@include file="pagebean.jspf" %>
+    						
 							</div>
-							 -->
 						</div>
 					</div>
 				</div>

@@ -29,7 +29,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 			throw new RestPageException("用户名或密码错误");
 		}
 		return user;
-
 	}
 	
 	

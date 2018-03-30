@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="list-link" style=" border-top: 1px solid #B5CFD9; text-align: center;">
 			<a href="${pageContext.request.contextPath}/person_list.action" target="main">员工管理</a>
 			<a href="${pageContext.request.contextPath}/wage_list.action" target="main">薪资管理</a>
-			<a href="Member-manage.html" target="main">考勤管理</a>
+			<a href="${pageContext.request.contextPath}/qd_list.action" target="main">考勤管理</a>
 		</div>
 	</body>
 

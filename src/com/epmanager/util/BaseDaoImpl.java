@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 
+
 import freemarker.template.Configuration;
 
 /**
@@ -142,7 +143,7 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 			 Object... para) {
 		SQLQuery sqlQuery=getSession().createSQLQuery(sql);
 		for(int i=0;i<para.length;i++){
-			sqlQuery.setString(i, para.toString());
+			sqlQuery.setParameter(i, para[i]);
 		}
 		sqlQuery.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
 		return sqlQuery.list();
@@ -152,11 +153,40 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 			Object... para) {
 		SQLQuery sqlQuery=getSession().createSQLQuery(sql);
 		for(int i=0;i<para.length;i++){
-			sqlQuery.setString(i, para.toString());
+			sqlQuery.setParameter(i, para[i]);
 		}
 		sqlQuery.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
 		return (Map<String, Object>) (sqlQuery.list().size()>0?sqlQuery.list().get(0):null);
 	}
 	
-	
+	public PageBean getPageBeanBySql(String sql, int pageNum, int Pagesize,Object... para) {
+		int pageSize = Pagesize;
+
+		// 查询数据列表
+		SQLQuery query = getSession().createSQLQuery(sql); // 生成查询对象
+		if (para != null) {// 设置参数
+			for (int i = 0; i < para.length ;i++) {
+				query.setParameter(i, para[i]);
+			}
+		}
+		query.setFirstResult((pageNum - 1) * pageSize);
+		query.setMaxResults(pageSize);
+		query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+		
+		System.out.println(query.getQueryString());
+		
+		List list = query.list(); // 执行查询
+
+		// 查询总记录数
+		SQLQuery countQuery = getSession().createSQLQuery(
+				sql); // 生成查询对象
+		if (para != null) {// 设置参数
+			for (int i = 0; i < para.length; i++) {
+				countQuery.setParameter(i, para[i]);
+			}
+		}
+		int count = countQuery.list().size(); // 执行查询
+
+		return new PageBean(pageNum, pageSize, count, list);
+	}
 }

@@ -71,6 +71,8 @@
 		
 		<action name="qd_*" class="com.epmanager.action.AtterdanceAction" method="{1}">
 			<interceptor-ref name="interceptorStack"/>
+			<result name="list">/WEB-INF/page/atterdance.jsp</result>
+			<result name="details">/WEB-INF/page/qdDetails.jsp</result>
 		</action>
 		
 	</package>
