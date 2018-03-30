@@ -45,6 +45,9 @@
 			<result name="head">/WEB-INF/page/admin_head.jsp</result>
 			<result name="tologin" type="redirect">/index_main.action</result>
 			
+			<result name="employee">/WEB-INF/page/qd.jsp</result>
+			<result name="userLeft">/WEB-INF/page/user_left.jsp</result>
+			
 		</action>
 		
 		<action name="person_*" class="com.epmanager.action.PersonAction" method="{1}">
@@ -55,6 +58,8 @@
 			<result name="edit">/WEB-INF/page/personUpdate.jsp</result>
 			<result name="update" type="redirect">/person_list.action</result>
 			<result name="delete" type="redirect">/person_list.action</result>
+			
+			
 		</action>
 		
 		<action name="wage_*" class="com.epmanager.action.WageAction" method = "{1}">
@@ -64,6 +69,9 @@
 			<result name="list">/WEB-INF/page/wageList.jsp</result>
 		</action>
 		
+		<action name="qd_*" class="com.epmanager.action.AtterdanceAction" method="{1}">
+			<interceptor-ref name="interceptorStack"/>
+		</action>
 		
 	</package>
 </struts>

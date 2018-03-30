@@ -29,6 +29,10 @@ public class RestPageInterceptor extends AbstractInterceptor{
 			} catch (RestPageException e) {
 				ServletActionContext.getContext().put("errorMsg", e.getMessage());
 				return "errorMsg";
+			/*}catch (Exception e) {
+				System.out.println(e.getMessage());
+				ServletActionContext.getContext().put("errorMsg","系统异常，请重试！");
+				return "errorMsg";*/
 			}
         	return in;
         }
