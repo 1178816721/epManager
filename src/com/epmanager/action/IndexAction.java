@@ -1,5 +1,8 @@
 package com.epmanager.action;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.struts2.ServletActionContext;
 
 import com.epmanager.exception.util.RestPageException;
@@ -15,12 +18,26 @@ public class IndexAction extends BaseAction<User>{
 		return "main";
 	}
 	public String top(){
+		ServletActionContext.getContext().put("date", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		return "top";
 	}
 	public String left(){
+		User user= (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		if(user.getAut()==0){//员工
+			String str=attendanceService.historyQd(new Date().getMonth()+1,getLoginSession().getId());
+			ServletActionContext.getContext().put("str", str);
+			return "userLeft";			
+		}
+		
 		return "left";
 	}
 	public String index(){
+		User user= (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		if(user.getAut()==0){//员工
+			String str=attendanceService.historyQd(new Date().getMonth()+1,getLoginSession().getId());
+			ServletActionContext.getContext().put("str", str);
+			return "employee";			
+		}
 		return "index";
 	}
 	public String head(){
@@ -30,11 +47,10 @@ public class IndexAction extends BaseAction<User>{
 		return "login";
 	}
 	public String tologin(){
-		/*usen= ServletActionContext.getRequest().getParameter("usen");
-		psd= ServletActionContext.getRequest().getParameter("usen");*/
 		User user=  userService.login(model.getUsen(), model.getPsd());
 		ServletActionContext.getRequest().getSession().setAttribute("user", user);
 		return "tologin";
+		
 	}
 	public String outLogin(){
 		ServletActionContext.getRequest().getSession().removeAttribute("user");
@@ -43,6 +59,8 @@ public class IndexAction extends BaseAction<User>{
 	
 	
 	
-	
+	public static void main(String[] args) {
+		
+	}
 	
 }
