@@ -2,6 +2,7 @@ package com.epmanager.util;
 
 
 import java.util.List;
+import java.util.Map;
 
 
 public class BaseServiceImpl<T> implements BaseService<T> {
@@ -45,6 +46,27 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	public List<T> getByIds(Integer[] ids) {
 		
 		return  baseDao.getByIds(ids);
+	}
+
+	public List<T> findObjectsBysql(String sql, Class<T> classz) {
+		// TODO Auto-generated method stub
+		return baseDao.findObjectsBysql(sql, classz);
+	}
+
+	public T findObjectBysql(String sql, Class<T> classz) {
+		// TODO Auto-generated method stub
+		 return baseDao.findObjectBysql(sql, classz);
+	}
+
+	public List<Map<String, Object>> findObjectsBysql(String sql,
+			Object... para) {
+		// TODO Auto-generated method stub
+		return baseDao.findObjectsBysql(sql, para);
+	}
+
+	public Map<String, Object> findObjectBysql(String sql, Object... para) {
+		// TODO Auto-generated method stub
+		return baseDao.findObjectBysql(sql, para);
 	}
 
 
