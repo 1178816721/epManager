@@ -4,12 +4,14 @@ import java.util.Date;
 
 import org.apache.poi.hssf.model.Model;
 
+import com.epmanager.exception.util.RestPageException;
 import com.epmanager.orm.Person;
 import com.epmanager.orm.User;
 import com.epmanager.orm.Wage;
 import com.epmanager.util.HqlHelper;
 import com.epmanager.util.PageBean;
 import com.opensymphony.xwork2.ActionContext;
+import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
 
 public class WageAction extends BaseAction<Wage> {
 
@@ -31,6 +33,9 @@ public class WageAction extends BaseAction<Wage> {
 		if(wage==null){//新增
 			link="wage_addWage.action";
 		}else{//修改
+			if(getLoginSession().getAut()==0){
+				throw new RestPageException("权限不足，无法修改");
+			}
 			ActionContext.getContext().put("wage", wage);
 			link="wage_update.action";
 		}
@@ -39,6 +44,7 @@ public class WageAction extends BaseAction<Wage> {
 	}
 
 	public String update(){
+		
 		wage=wageService.getById(model.getId());
 		wage.setBonus(model.getBonus());
 		wage.setCm(model.getCm());
@@ -60,7 +66,18 @@ public class WageAction extends BaseAction<Wage> {
 
 	public String list(){
 		HqlHelper hqlHelper = new HqlHelper(Wage.class, "p");
-		//hqlHelper.addWhereCondition(getUsen()!=null&&!getUsen().equals(""), "p.user.usen like ?","%"+getUsen()+"%");
+		hqlHelper.addWhereCondition(getUserId()!=null&&!getUserId().equals(""), "p.user.usen like ?","%"+getUserId()+"%");
+		PageBean pageBean=personService.getPageBean(hqlHelper, pageNum, 10);
+		ActionContext.getContext().getValueStack().push(pageBean);
+		//ActionContext.getContext().put("usen", getUsen());
+		return "list";
+	}
+	
+	
+	public String myWage(){
+		HqlHelper hqlHelper = new HqlHelper(Wage.class, "p");
+		User user = getLoginSession();
+		hqlHelper.addWhereCondition(true, "p.user.id =?",user.getId());
 		PageBean pageBean=personService.getPageBean(hqlHelper, pageNum, 10);
 		ActionContext.getContext().getValueStack().push(pageBean);
 		//ActionContext.getContext().put("usen", getUsen());

@@ -59,6 +59,9 @@
 			<result name="update" type="redirect">/person_list.action</result>
 			<result name="delete" type="redirect">/person_list.action</result>
 			
+			<result name="myEdit">/WEB-INF/page/personMyUpdate.jsp</result>
+			<result name="myUpdate" type="redirect">/person_myEdit.action</result>
+			
 			
 		</action>
 		

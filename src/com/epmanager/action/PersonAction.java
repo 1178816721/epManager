@@ -8,6 +8,9 @@ import com.epmanager.util.HqlHelper;
 import com.epmanager.util.PageBean;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.util.ValueStack;
+import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
+
+import java.sql.PseudoColumnUsage;
 import java.util.Date;
 
 public class PersonAction
@@ -47,9 +50,9 @@ public class PersonAction
   public String update()
   {
     Person p = (Person)this.personService.getById(this.person.getId());
-    p.setAddress(((Person)this.model).getAddress());
+    p.setAddress(this.person.getAddress());
     p.setAge(this.person.getAge());
-    p.setBirthday(((Person)this.model).getBirthday());
+    p.setBirthday(this.person.getBirthday());
     p.setFamily(this.person.getFamily());
     p.setGender(this.person.getGender());
     p.setIdCard(this.person.getIdCard());
@@ -84,6 +87,35 @@ public class PersonAction
     return "delete";
   }
   
+  ///////////////////////////////////////用户修改自己信息
+  public String myEdit(){
+	  person =personService.getById(getLoginSession().getPerson().getId());
+	  ActionContext.getContext().put("person", this.person);
+	  return "myEdit";
+  }
+  public String myUpdate()
+  {
+    Person p = (Person)this.personService.getById(this.person.getId());
+    p.setAddress(this.person.getAddress());
+    p.setAge(this.person.getAge());
+    p.setBirthday(this.person.getBirthday());
+    p.setFamily(this.person.getFamily());
+    p.setGender(this.person.getGender());
+    p.setIdCard(this.person.getIdCard());
+    p.setJobName(this.person.getJobName());
+    p.setName(this.person.getName());
+    p.setPhone(this.person.getPhone());
+    this.personService.update(p);
+    
+    this.user = ((User)this.userService.getById(p.getUser().getId()));
+    this.user.setPsd(getPsd());
+    this.user.setUsen(getUsen());
+    this.userService.update(this.user);
+    return "myUpdate";
+  }
+  
+  
+  ////////////////////////////////////////
   public Person getPerson()
   {
     return this.person;
