@@ -47,8 +47,7 @@ public class PersonAction
     return "edit";
   }
   
-  public String update()
-  {
+  public String update(){
     Person p = (Person)this.personService.getById(this.person.getId());
     p.setAddress(this.person.getAddress());
     p.setAge(this.person.getAge());

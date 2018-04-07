@@ -8,7 +8,6 @@ import com.epmanager.dao.UserDao;
 import com.epmanager.exception.util.RestPageException;
 import com.epmanager.orm.User;
 import com.epmanager.service.UserService;
-import com.epmanager.util.BaseService;
 import com.epmanager.util.BaseServiceImpl;
 @Service
 public class UserServiceImpl extends BaseServiceImpl<User> implements UserService{
