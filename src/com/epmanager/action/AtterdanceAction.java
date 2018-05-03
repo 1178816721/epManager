@@ -62,7 +62,8 @@ public class AtterdanceAction extends BaseAction<Attendance> {
 	 */
 	public String qd() throws IOException{
 		HttpServletResponse response= ServletActionContext.getResponse();
-		if(attendanceService.isNowDayQd()){
+		User user= getLoginSession();
+		if(attendanceService.isNowDayQd(user.getId())){
 			model.setCreateDate(new Date());
 			model.setUser(getLoginSession());
 			attendanceService.save(model);

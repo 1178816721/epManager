@@ -8,8 +8,6 @@ import com.epmanager.util.HqlHelper;
 import com.epmanager.util.PageBean;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.util.ValueStack;
-import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
-
 import java.sql.PseudoColumnUsage;
 import java.util.Date;
 
@@ -35,6 +33,7 @@ public class PersonAction
     this.user.setUsen(getUsen());
     this.person.setCreateDate(new Date());
     this.person.setUser(this.user);
+    user.setFlag(1);
     this.userService.save(this.user);
     this.personService.save(this.person);
     return "save";
@@ -70,6 +69,7 @@ public class PersonAction
   public String list()
   {
     HqlHelper hqlHelper = new HqlHelper(Person.class, "p");
+    hqlHelper.addWhereCondition(" p.user.flag=?",1);
     hqlHelper.addWhereCondition((getUsen() != null) && (!getUsen().equals("")), "p.user.usen like ?", new Object[] { "%" + getUsen() + "%" });
     PageBean pageBean = this.personService.getPageBean(hqlHelper, this.pageNum, 10);
     ActionContext.getContext().getValueStack().push(pageBean);
@@ -79,10 +79,14 @@ public class PersonAction
   
   public String delete()
   {
+	  //person
     this.person = ((Person)this.personService.getById(((Person)this.model).getId()));
+    //userId
     Integer id = this.person.getUser().getId();
-    this.personService.delete(((Person)this.model).getId());
-    this.userService.delete(id);
+   
+    User user=userService.getById(id);
+    user.setFlag(0);
+    userService.update(user);
     return "delete";
   }
   

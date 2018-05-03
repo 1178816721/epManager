@@ -1,17 +1,13 @@
 package com.epmanager.action;
 
 import java.util.Date;
-
-import org.apache.poi.hssf.model.Model;
-
 import com.epmanager.exception.util.RestPageException;
-import com.epmanager.orm.Person;
 import com.epmanager.orm.User;
 import com.epmanager.orm.Wage;
 import com.epmanager.util.HqlHelper;
 import com.epmanager.util.PageBean;
 import com.opensymphony.xwork2.ActionContext;
-import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
+
 
 public class WageAction extends BaseAction<Wage> {
 

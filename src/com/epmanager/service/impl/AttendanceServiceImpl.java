@@ -18,9 +18,9 @@ public class AttendanceServiceImpl extends BaseServiceImpl<Attendance> implement
 		super.setBaseDao(attendanceDao);
 		this.attendanceDao = attendanceDao;
 	}
-	public boolean isNowDayQd() {
+	public boolean isNowDayQd(int userId) {
 		
-		return attendanceDao.isNowDayQd();
+		return attendanceDao.isNowDayQd(userId);
 	}
 	public String historyQd(int month,int userId) {
 		

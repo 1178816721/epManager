@@ -14,7 +14,7 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao{
 
 	public User login(String usen, String psd) {
 
-		HqlHelper hqlHelper = new HqlHelper(User.class, "u").addWhereCondition("u.usen=? and u.psd=?",usen,psd);
+		HqlHelper hqlHelper = new HqlHelper(User.class, "u").addWhereCondition("u.usen=? and u.psd=? and u.flag=?",usen,psd,1);
 		List<User> users =findObjects(hqlHelper);
 		if(users.size()>0){
 			return users.get(0);

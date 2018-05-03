@@ -17,6 +17,9 @@
         <property name="aut" type="int">
             <column name="AUT" />
         </property>
+        <property name="flag" type="int">
+            <column name="FLAG" default="1"/>
+        </property>
         <property name="createDate" type="java.util.Date">
             <column name="CREATEDATE" />
         </property>
