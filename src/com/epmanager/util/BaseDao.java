@@ -92,7 +92,10 @@ public interface BaseDao<T> {
 	 */
 	public Map<String, Object> findObjectBysql(String sql,Object ...para);
 	
-
+	/**
+	 * 根据sql进行删除
+	 */
+	public void deleteBysql(String sql,Object ...para);
 	/**
 	 * 分页信息，传进来的参数为 起始页，�?��显示多少
 	 * 

@@ -17,6 +17,7 @@
         <property name="aut" type="int">
             <column name="AUT" />
         </property>
+       
         <property name="createDate" type="java.util.Date">
             <column name="CREATEDATE" />
         </property>

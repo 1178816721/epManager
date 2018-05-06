@@ -22,5 +22,10 @@ public class WageServiceImpl extends BaseServiceImpl<Wage> implements WageServic
 		return wageDao.getWageByUserId(userId);
 		
 	}
+
+	public void deleteByUserId(Integer userId) {
+		wageDao.deleteBysql("delete from Wage where USER=?", userId);
+		
+	}
 	
 }

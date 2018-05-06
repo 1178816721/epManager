@@ -5,5 +5,5 @@ import com.epmanager.util.BaseService;
 
 public interface WageService extends BaseService<Wage>{
 		public Wage getWageByUserId(Integer userId);
-		
+		public void deleteByUserId(Integer userId);
 }

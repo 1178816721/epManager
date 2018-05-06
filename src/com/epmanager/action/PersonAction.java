@@ -8,8 +8,6 @@ import com.epmanager.util.HqlHelper;
 import com.epmanager.util.PageBean;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.util.ValueStack;
-import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
-
 import java.sql.PseudoColumnUsage;
 import java.util.Date;
 
@@ -77,12 +75,27 @@ public class PersonAction
     return "list";
   }
   
+  /**
+   * 删除员工 不仅要删除user 和person表  还有删除  工资记录和 签到记录
+   * @return
+   */
   public String delete()
   {
-    this.person = ((Person)this.personService.getById(((Person)this.model).getId()));
-    Integer id = this.person.getUser().getId();
-    this.personService.delete(((Person)this.model).getId());
-    this.userService.delete(id);
+	  //person
+	    this.person = ((Person)this.personService.getById(((Person)this.model).getId()));
+	    //userId
+	    Integer id = this.person.getUser().getId();
+	  //删除签到
+	 attendanceService.deleteByUser(id);
+	 //删除工资
+	 wageService.deleteByUserId(id);
+	 person.setUser(null);
+	  User user=userService.getById(id);
+	  user.setPerson(null);
+	  userService.update(user);
+	 personService.update(person);
+	 userService.delete(id);
+	 personService.delete(model.getId());
     return "delete";
   }
   

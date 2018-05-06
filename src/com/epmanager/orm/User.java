@@ -10,6 +10,7 @@ public class User implements Serializable{
 	private int aut;//权限 0员工 1管理员
 	private Date createDate;
 	private Person person;
+	
 	public User() {
 		super();   
 	}

@@ -15,10 +15,10 @@ import com.epmanager.util.BaseDaoImpl;
 public class AttendanceDaoImpl extends BaseDaoImpl<Attendance> implements
 		AttendanceDao {
 
-	public boolean isNowDayQd() {
+	public boolean isNowDayQd(int userId) {
 		SQLQuery query = getSession()
 				.createSQLQuery(
-						"select * from ATTENDANCE where DATE_FORMAT(CREATEDATE,'%yyyy%MM%dd')=DATE_FORMAT(NOW(),'%yyyy%MM%dd')")
+						"select * from ATTENDANCE where DATE_FORMAT(CREATEDATE,'%yyyy%MM%dd')=DATE_FORMAT(NOW(),'%yyyy%MM%dd') and USER="+userId)
 				.addEntity(Attendance.class);
 		List<Attendance> attendances = query.list();
 		
