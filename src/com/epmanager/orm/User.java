@@ -10,7 +10,7 @@ public class User implements Serializable{
 	private int aut;//权限 0员工 1管理员
 	private Date createDate;
 	private Person person;
-	private int flag;//1正常  0删除
+	
 	public User() {
 		super();   
 	}
@@ -46,12 +46,6 @@ public class User implements Serializable{
 		this.createDate = createDate;
 	}
 	
-	public int getFlag() {
-		return flag;
-	}
-	public void setFlag(int flag) {
-		this.flag = flag;
-	}
 	/**
 	 * @return the person
 	 */

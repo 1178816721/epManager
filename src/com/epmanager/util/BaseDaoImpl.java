@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 
+
 import freemarker.template.Configuration;
 
 /**
@@ -159,6 +160,16 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 		return (Map<String, Object>) (sqlQuery.list().size()>0?sqlQuery.list().get(0):null);
 	}
 	
+	
+	
+	public void deleteBysql(String sql, Object... para) {
+		SQLQuery sqlQuery=getSession().createSQLQuery(sql);
+		for(int i=0;i<para.length;i++){
+			sqlQuery.setParameter(i, para[i]);
+		}
+		sqlQuery.executeUpdate();
+	}
+
 	public PageBean getPageBeanBySql(String sql, int pageNum, int Pagesize,Object... para) {
 		int pageSize = Pagesize;
 

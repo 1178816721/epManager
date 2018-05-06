@@ -19,8 +19,5 @@ public class WageDaoImpl extends BaseDaoImpl<Wage> implements WageDao{
 		return wages.size()==0?null:wages.get(0);
 	}
 
-	
-
-
 
 }

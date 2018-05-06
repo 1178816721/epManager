@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.epmanager.dao.AttendanceDao;
 import com.epmanager.dao.impl.AttendanceDaoImpl;
 import com.epmanager.orm.Attendance;
+import com.epmanager.orm.User;
 import com.epmanager.service.AttendanceService;
 import com.epmanager.util.BaseService;
 import com.epmanager.util.BaseServiceImpl;
@@ -25,6 +26,9 @@ public class AttendanceServiceImpl extends BaseServiceImpl<Attendance> implement
 	public String historyQd(int month,int userId) {
 		
 		return attendanceDao.historyQd(month,userId);
+	}
+	public void deleteByUser(Integer userId) {
+		attendanceDao.deleteBysql("delete from Attendance where USER=?",userId);
 	}
 	
 }

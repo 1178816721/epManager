@@ -33,7 +33,6 @@ public class PersonAction
     this.user.setUsen(getUsen());
     this.person.setCreateDate(new Date());
     this.person.setUser(this.user);
-    user.setFlag(1);
     this.userService.save(this.user);
     this.personService.save(this.person);
     return "save";
@@ -69,7 +68,6 @@ public class PersonAction
   public String list()
   {
     HqlHelper hqlHelper = new HqlHelper(Person.class, "p");
-    hqlHelper.addWhereCondition(" p.user.flag=?",1);
     hqlHelper.addWhereCondition((getUsen() != null) && (!getUsen().equals("")), "p.user.usen like ?", new Object[] { "%" + getUsen() + "%" });
     PageBean pageBean = this.personService.getPageBean(hqlHelper, this.pageNum, 10);
     ActionContext.getContext().getValueStack().push(pageBean);
@@ -77,16 +75,27 @@ public class PersonAction
     return "list";
   }
   
+  /**
+   * 删除员工 不仅要删除user 和person表  还有删除  工资记录和 签到记录
+   * @return
+   */
   public String delete()
   {
 	  //person
-    this.person = ((Person)this.personService.getById(((Person)this.model).getId()));
-    //userId
-    Integer id = this.person.getUser().getId();
-   
-    User user=userService.getById(id);
-    user.setFlag(0);
-    userService.update(user);
+	    this.person = ((Person)this.personService.getById(((Person)this.model).getId()));
+	    //userId
+	    Integer id = this.person.getUser().getId();
+	  //删除签到
+	 attendanceService.deleteByUser(id);
+	 //删除工资
+	 wageService.deleteByUserId(id);
+	 person.setUser(null);
+	  User user=userService.getById(id);
+	  user.setPerson(null);
+	  userService.update(user);
+	 personService.update(person);
+	 userService.delete(id);
+	 personService.delete(model.getId());
     return "delete";
   }
   
