@@ -37,7 +37,7 @@ public class AtterdanceAction extends BaseAction<Attendance> {
 				") = DATE_FORMAT(NOW(), '%Y%m')\n" +
 				"AND `user`.AUT = 0   AND `user`.USEN LIKE ? \n" +
 				"GROUP BY\n" +
-				"	DATE_FORMAT(NOW(), '%Y%m')   ";
+				"	`user`.id    ";
 		if(getUsen()==null){
 			setUsen("");
 		}
